@@ -5,19 +5,19 @@ public class ConsoleProgress implements Runnable {
     public void run() {
         int count = 0;
         char[] process = {'\\', '|', '/'};
-        try {
-            while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
+            try {
                 Thread.sleep(500);
                 System.out.print("\r load: " + process[count]);
                 count++;
                 if (count > process.length - 1) {
                     count = 0;
                 }
-            }
-        } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
+    }
 
     public static void main(String[] args) throws InterruptedException {
         Thread progress = new Thread(new ConsoleProgress());
