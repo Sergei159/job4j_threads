@@ -1,6 +1,6 @@
 package ru.job4j.concurrent;
 
-public class Wget {
+public class WgetOldVersion {
 
     public static void main(String[] args) {
         Thread thread = new Thread(
@@ -22,3 +22,4 @@ public class Wget {
         System.out.println("Main");
     }
 }
+
