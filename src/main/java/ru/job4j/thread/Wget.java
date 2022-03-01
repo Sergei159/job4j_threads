@@ -50,9 +50,9 @@ public class Wget implements Runnable {
                     long time = endTime - startTime;
                     if (time < 1000) {
                         Thread.sleep(1000 - time);
-                        downloadData = 0;
-                        startTime = System.currentTimeMillis();
                     }
+                    downloadData = 0;
+                    startTime = System.currentTimeMillis();
                 }
             }
         } catch (IOException e) {
