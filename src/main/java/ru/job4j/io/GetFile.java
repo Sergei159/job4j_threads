@@ -19,19 +19,19 @@ public final class GetFile {
     }
 
     public synchronized String getContentByPredicate(Predicate<Character> filter) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         try (BufferedReader in = new BufferedReader(
                 new FileReader(file))) {
             int data;
             while ((data = in.read()) != -1) {
                 if (filter.test((char) data)) {
-                    output += (char) data;
+                    output.append((char) data);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return output;
+        return String.valueOf(output);
     }
 
 }
