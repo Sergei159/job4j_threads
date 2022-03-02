@@ -9,7 +9,7 @@ public final class SaveFile {
         this.file = file;
     }
 
-    public void saveContent(String content) throws IOException {
+    public synchronized void  saveContent(String content) throws IOException {
         try (BufferedWriter out = new BufferedWriter(
                 new FileWriter(file))) {
             for (int index = 0; index < content.length(); index += 1) {

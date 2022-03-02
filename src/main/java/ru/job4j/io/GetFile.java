@@ -18,13 +18,12 @@ public final class GetFile {
         return getContentByPredicate(data -> data < 0x80);
     }
 
-    public String getContentByPredicate(Predicate<Character> filter) {
-        String output = " ";
+    public synchronized String getContentByPredicate(Predicate<Character> filter) {
+        String output = "";
         try (BufferedReader in = new BufferedReader(
                 new FileReader(file))) {
-            output = "";
             int data;
-            while ((data = in.read()) > 0) {
+            while ((data = in.read()) != -1) {
                 if (filter.test((char) data)) {
                     output += (char) data;
                 }
