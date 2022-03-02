@@ -11,19 +11,22 @@ public class UserStorage {
     private final ConcurrentHashMap<Integer, User> users = new ConcurrentHashMap<>();
 
     public synchronized boolean add(User user) {
-        boolean result = false;
-        if (!users.contains(user)) {
-            users.put(user.getId(), user);
-            result = true;
-        }
-        return result;
+        return users.putIfAbsent(user.getId(), user) != null;
     }
 
     public synchronized boolean update(User user) {
         boolean result = false;
         if (findById(user.getId()) != null) {
-            users.put(user.getId(), user);
+            users.replace(user.getId(), user);
             result = true;
+        }
+        return result;
+    }
+
+    public synchronized boolean delete(User user) {
+        boolean result = false;
+        if (findById(user.getId()) != null) {
+            result = users.remove(user.getId(), user);
         }
         return result;
     }
@@ -36,8 +39,6 @@ public class UserStorage {
                 && userFrom.getAmount() >= amount) {
             userFrom.setAmount(userFrom.getAmount() - amount);
             userTo.setAmount(userTo.getAmount() + amount);
-            update(userFrom);
-            update(userTo);
             result = true;
         }
         return result;
