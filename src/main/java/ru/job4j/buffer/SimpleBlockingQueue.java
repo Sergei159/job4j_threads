@@ -1,3 +1,5 @@
+package ru.job4j.buffer;
+
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
@@ -29,11 +31,11 @@ public class SimpleBlockingQueue<T> {
 
     }
 
-    public synchronized T poll() {
+    public synchronized T poll() throws InterruptedException {
         while (queue.size() == 0) {
             try {
                 this.wait();
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e)  {
                 Thread.currentThread().interrupt();
             }
         }

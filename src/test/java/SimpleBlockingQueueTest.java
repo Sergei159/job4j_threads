@@ -1,4 +1,5 @@
 import org.junit.Test;
+import ru.job4j.buffer.SimpleBlockingQueue;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -17,8 +18,16 @@ public class SimpleBlockingQueueTest {
         );
         Thread second = new Thread(
                 () -> {
-                    blockingQueue.poll();
-                    blockingQueue.poll();
+                    try {
+                        blockingQueue.poll();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        blockingQueue.poll();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
         );
         first.start();
@@ -32,7 +41,13 @@ public class SimpleBlockingQueueTest {
     public void whenOfferToQueue() throws InterruptedException {
         SimpleBlockingQueue<Integer> blockingQueue = new SimpleBlockingQueue<>();
         Thread first = new Thread(
-                blockingQueue::poll
+                () -> {
+                    try {
+                        blockingQueue.poll();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
         );
         Thread second = new Thread(
                 () -> {
