@@ -121,5 +121,4 @@ public class SimpleBlockingQueueTest {
         consumer.join();
         assertThat(buffer, is(Arrays.asList(0, 1, 2, 3, 4)));
     }
-
 }
