@@ -11,7 +11,7 @@ public class UserStorage {
     private final ConcurrentHashMap<Integer, User> users = new ConcurrentHashMap<>();
 
     public synchronized boolean add(User user) {
-        return users.putIfAbsent(user.getId(), user) != null;
+        return users.putIfAbsent(user.getId(), user) == null;
     }
 
     public synchronized boolean update(User user) {
