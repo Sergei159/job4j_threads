@@ -87,7 +87,6 @@ public class SimpleBlockingQueueTest {
                     }
                 }
         );
-
         first.start();
         second.start();
         first.join();
