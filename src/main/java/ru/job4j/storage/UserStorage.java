@@ -15,20 +15,11 @@ public class UserStorage {
     }
 
     public synchronized boolean update(User user) {
-        boolean result = false;
-        if (findById(user.getId()) != null) {
-            users.replace(user.getId(), user);
-            result = true;
-        }
-        return result;
+        return users.replace(user.getId(), user) != null;
     }
 
     public synchronized boolean delete(User user) {
-        boolean result = false;
-        if (findById(user.getId()) != null) {
-            result = users.remove(user.getId(), user);
-        }
-        return result;
+        return users.remove(user.getId(), user);
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
