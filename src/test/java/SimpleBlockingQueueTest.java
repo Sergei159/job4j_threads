@@ -2,8 +2,6 @@ import org.junit.Test;
 import ru.job4j.buffer.SimpleBlockingQueue;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
@@ -14,9 +12,8 @@ public class SimpleBlockingQueueTest {
 
     @Test
     public void whenPollFromQueue() throws InterruptedException {
-        SimpleBlockingQueue<Integer> blockingQueue = new SimpleBlockingQueue<>(
-                new LinkedList<>(), 2
-        );
+        SimpleBlockingQueue<Integer> blockingQueue
+                = new SimpleBlockingQueue<>(2);
         Thread first =  new Thread(
                 () -> {
                     IntStream.range(0, 3).forEach(
@@ -53,9 +50,8 @@ public class SimpleBlockingQueueTest {
 
     @Test
     public void whenOfferToQueue() throws InterruptedException {
-        SimpleBlockingQueue<Integer> blockingQueue = new SimpleBlockingQueue<>(
-                new LinkedList<>(), 2
-        );
+        SimpleBlockingQueue<Integer> blockingQueue
+                = new SimpleBlockingQueue<>(2);
         Thread first = new Thread(
                 () -> {
                     try {
