@@ -10,6 +10,15 @@ public class ThreadPool {
     private final SimpleBlockingQueue<Runnable> tasks
             = new SimpleBlockingQueue<>(Runtime.getRuntime().availableProcessors());
 
+    public ThreadPool() {
+        int size = Runtime.getRuntime().availableProcessors();
+        for (int i = 0; i < size; i++) {
+            Thread thread = new Thread();
+            thread.start();
+            threads.add(thread);
+        }
+    }
+
     public void work(Runnable job) {
         try {
             tasks.offer(job);
