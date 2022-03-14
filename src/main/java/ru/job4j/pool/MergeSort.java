@@ -1,24 +1,16 @@
 package ru.job4j.pool;
 
-/**
- * Класс реализует сортировку слиянием с использованием рекурсии
- */
+import java.util.Arrays;
+
 public class MergeSort {
 
     public static int[] sort(int[] array) {
         return sort(array, 0, array.length - 1);
     }
 
-    /**
-     * Метод сортирует массив методом слияния, используя рекурсию
-     * @param array
-     * @param from
-     * @param to
-     * @return
-     */
     private static int[] sort(int[] array, int from, int to) {
         if (from == to) {
-            return new int[] {array[from] };
+            return new int[] {array[from]};
         }
         int mid = (from + to) / 2;
         return merge(
@@ -48,6 +40,12 @@ public class MergeSort {
             }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        int[] unSorted = new int[] {6, 4, 57, 33, 68, 1, 36, 84};
+        System.out.println(Arrays.toString(sort(unSorted)));
+
     }
 
 }

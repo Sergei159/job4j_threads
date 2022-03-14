@@ -4,7 +4,7 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * Класс реализует сортировку слиянием с ипользованием многопоточности
+ * Класс реализует сортировку слиянием с использованием многопоточности
  */
 
 public class ParallelMergeSort extends RecursiveTask<int[]> {
