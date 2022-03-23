@@ -4,7 +4,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class AsynchExample {
-
     /**
      * На выбор:
      *  runAsyncExample();
